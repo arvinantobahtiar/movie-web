@@ -32,6 +32,7 @@ returnMovies(APILINK)
   
         title.innerHTML = `${element.title}`;
         image.src = IMG_PATH + element.poster_path;
+        title.innerHTML = `${emoji+element.voting_average}`;
   
         center.appendChild(image);
         div_card.appendChild(center);
