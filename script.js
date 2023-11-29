@@ -29,14 +29,20 @@ function returnMovies(url){
       const title = document.createElement('h3');
       title.setAttribute('id', 'title');
       
+      const rating = document.createElement('h5');
+      rating.setAttribute('id', 'rating');
+
+
       const center = document.createElement('center');
 
       title.innerHTML = `${element.title}`;
       image.src = IMG_PATH + element.poster_path;
+      rating.innerHTML = `${"&#11088 "+element.vote_average}`;
 
       center.appendChild(image);
       div_card.appendChild(center);
       div_card.appendChild(title);
+      div_card.appendChild(rating);
       div_column.appendChild(div_card);
       div_row.appendChild(div_column);
 
