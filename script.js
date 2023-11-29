@@ -7,57 +7,56 @@ const form = document.getElementById("form");
 const search = document.getElementById("query");
 
 returnMovies(APILINK)
-    function returnMovies(url) {
-        fetch(url).then(res=> res.json())
-        .then(function(data) {
-            console.log(data.results);
-            data.results.forEach(element => {
-                const div_card = document.createElement('div');
-                div_card.setAttribute('class', 'card');
+  function returnMovies(url){
+    fetch(url).then(res => res.json())
+    .then(function(data){
+    console.log(data.results);
+    data.results.forEach(element => {
+        const div_card = document.createElement('div');
+        div_card.setAttribute('class', 'card');
+        
+        const div_row = document.createElement('div');
+        div_row.setAttribute('class', 'row');
+        
+        const div_column = document.createElement('div');
+        div_column.setAttribute('class', 'column');
+        
+        const image = document.createElement('img');
+        image.setAttribute('class', 'thumbnail');
+        image.setAttribute('id', 'image');
+        
+        const title = document.createElement('h3');
+        title.setAttribute('id', 'title');
+        
+        const rating = document.createElement('h5');
+        rating.setAttribute('id', 'rating');
+        let star_emoji = emojione.toShort("⭐"); 
 
-                const div_row = document.createElement('div');
-                div_row.setAttribute('class', 'row');
-
-                const div_column = document.createElement('div');
-                div_column.setAttribute('class', 'column');
-
-                const thumbnail = document.createElement('img');
-                thumbnail.setAttribute('class', 'thumbnail');
-                thumbnail.setAttribute('id', 'image');
-
-                const title = document.createElement('h3');
-                title.setAttribute('id', 'title');
-
-                const rating = document.createElement('h5');
-                rating.setAttribute('id', 'rating');
-                let star_emoji = emojione.toShort("⭐"); 
-
-                const center = document.createElement('center');
-
-                title.innerHTML = `${element.title}`;
-                thumbnail.src = `${IMG_PATH + element.poster_path}`;
-                rating.innerHTML = `${star_emoji+element.vote_average}`;
-
-                center.appendChild(thumbnail);
-                div_card.appendChild(center);
-                div_card.appendChild(title);
-                div_card.appendChild(rating);
-                div_column.appendChild(div_card);
-                div_row.appendChild(div_column);
-
-                main.appendChild(div_row);
-
-            });
-        });
-    }
+        const center = document.createElement('center');
+  
+        title.innerHTML = `${element.title}`;
+        image.src = IMG_PATH + element.poster_path;
+        rating.innerHTML = `${star_emoji+element.vote_average}`;
+        
+        center.appendChild(image);
+        div_card.appendChild(center);
+        div_card.appendChild(title);
+        div_column.appendChild(div_card);
+        div_row.appendChild(div_column);
+  
+        main.appendChild(div_row);
+    });
+  });
+  }
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    main.innerHTML = '';
+  e.preventDefault();
+  main.innerHTML = '';
 
-    const searchMovie = search.value;
+  const searchItem = search.value;
 
-    if(searchMovie) {
-        returnMovies(SEARCHAPI + searchMovie);
-    }
-})
+  if (searchItem) {
+    returnMovies(SEARCHAPI + searchItem);
+      search.value = "";
+  }
+});
