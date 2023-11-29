@@ -35,7 +35,7 @@ returnMovies(APILINK)
         const center = document.createElement('center');
   
         title.innerHTML = `${element.title}`;
-        image.src = IMG_PATH + element.poster_path;
+        image.src = `${IMG_PATH + element.poster_path}`;
         rating.innerHTML = `${star_emoji+element.vote_average}`;
         
         center.appendChild(image);
